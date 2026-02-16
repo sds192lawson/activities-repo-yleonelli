@@ -1,0 +1,38 @@
+---
+title: "Activity 2_16"
+format: html
+editor: visual
+---
+
+```{r}
+nba_data <- read.csv("C:/Users/Owner/OneDrive/Documents/SDS 192/activities-repo-yleonelli2/nba2024.csv", header = T)
+summary(nba_data$PTS)
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(nba_data, aes(x = FGA))+
+  geom_histogram(color = "white", bins = 10) +
+  labs(title = "Histogram of NBA Field Goal Attempts (FGA)", x = "Field Goal Attempts", y = "count") +
+  geom_vline(aes(xintercept = mean(FGA), color = "red"))
+```
+
+```{r}
+
+ #ggplot(nba_data, aes(x = Age)) +
+  #geom_histogram(color = "white", bins = 10) +
+  #labs(title = "Age of NBA Players in 2024 Season", x = "Age", y = "count") +
+  #geom_vline(aes(xintercept = mean(Age), color = "red""))
+```
+
+
+```{r}
+ggplot(nba_data, aes(x = Tm)) +
+  geom_bar(color = "white") +
+  theme(text = element_text(size = 5), title = element_text(size = 10)) +
+  labs(title = "Bar Plot of NBA Players and Teams for 2024", x = "Teams", y = "Player Count") +
+  theme(axis.text.x = element_text(angle = 45, size = 5))
+  #coord_flip()
+```
+
