@@ -1,0 +1,26 @@
+---
+title: "Reading Exercise 2"
+format: html
+---
+
+## Reading Exercise 2
+
+
+### A. Identify a graphical display that you find compelling. What aspects of the display work well, and how do these relate to the principles established in this chapter? Include a screen shot of the display along with your solution.
+
+![](Screenshot 2026-02-15 224119.png)
+
+(If that doesn't work, just paste web address according to TA)
+https://www.reddit.com/r/dataisbeautiful/comments/ickvfq/oc_two_thousand_years_of_global_temperatures_in/#lightbox
+
+It doesn't show in the screenshot, but this graphical display is actually a GIF, in which the line graph starts initially zoomed in and as time goes on the x-axis becomes less specific, showing the action of zooming out. It also shows the drastic change in temperature differences towards the end of the GIF (the last few decades) not just by the massive spike, but also the color turning from purple to yellow as the line climbed higher on the y-axis. It represents solid, readable data while also stating an important point about the changes in global temperatures very recently compared to a 2000-year time span.
+
+
+### B. Identify a graphical display that you find less than compelling. What aspects of the display don’t work well? Are there ways that the display might be improved? Include a screen shot of the display along with your solution.
+
+![](Screenshot 2026-02-13 143335.png)
+
+(If that doesn't work, just paste web address according to TA)
+https://www.reddit.com/r/dataisbeautiful/comments/1r3v6qj/oc_worlds_longest_highspeed_rail_networks/
+
+Some things I don't really like about this visualization is that it doesn't take into account rail-density; China is leading in high-speed rail lengths because it's the second largest country in the world, but Spain, the country second to it, is far smaller but has still managed to place second worldwide. It would also be great to know where these high-speed rails are situated; if they're ONLY on the east coast of China or if there are rails that are dispersed along the west of the country too. Also, many of China's high-speed rail systems are considered some of the fastest in the world, and while some countries claim to have high-speed rails, this graph might be lumping two totally different categories in terms of the true definition of high-speed rails. While it looks visually pleasing as an infographic, I think a better form of visualization would utilize something like a bar chart. It could also add a clear definition of what high-speed rail entails, and could also include sources of where the creator of the graphic obtained their  data.
