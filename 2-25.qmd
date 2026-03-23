@@ -1,0 +1,21 @@
+---
+title: "w512_act.qmd"
+format: html
+editor: visual
+---
+
+```{r}
+library(mlbench)
+library(ggplot2)
+data(BostonHousing2)
+```
+
+```{r}
+ggplot(BostonHousing2, aes(x = medv, y = chas)) +
+  geom_boxplot() + 
+  labs(x = "Median Value of Owner-Occupied Homes ($1000s)",
+       y = "Charles River Dummy Variable",
+       title = "Median Value of Owner-Occupied Homes Along vs. Not Along Charles River in Boston Census Tracts, 1970") +
+  theme_classic()
+```
+

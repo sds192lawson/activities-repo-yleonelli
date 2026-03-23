@@ -18,7 +18,9 @@ editor: source
 Use the `read.csv()` function in the code chunk below to load in the `wnba1`, `wnba2`, and `wnbaStars` datasets. Make sure that the data sets are in the appropriate directory.
 
 ```{r}
-#PUT CODE HERE
+wnba1 <- read.csv("wnba1.csv")
+wnba2 <- read.csv("wnba2.csv")
+wnbaStars <- read.csv("wnbaStars.csv")
 ```
 
 Data has been subsetted and filtered from the following source [here](https://www.basketball-reference.com/wnba/years/2024_per_minute.html). The data corresponds to per-36 minute data from all players that participated in the 2024 WNBA season. For most variables, they have been scaled on a per-36 minute basis to account for the different minute totals that each player will have throughout the season. As you will see, each dataset has some information from the whole dataset seen at the source. We will use data joining techniques to piece together some of this data.
@@ -33,7 +35,10 @@ Answer the following wrangling questions below.
 Join the `wnba2` and `wnbaStars` data frames together, removing any players not shared between the two. Then, select the columns associated with the team, player, points, rebounds, and assists. Report on the number of players in this shared dataset.
 
 ```{r}
-#PUT CODE HERE
+wnba2 |>
+  inner_join(wnbaStars,
+            by = c("Player", "Team")) |>
+  select(Player, Team, PTS, TRB, AST)
 ```
 
 :::
@@ -44,8 +49,12 @@ Join the `wnba2` and `wnbaStars` data frames together, removing any players not 
 Join the `wnba2` and `wnbaStars` data frames together, keeping all players from `wnba2` but excluding those from `wnbaStars` that are not shared. Then, select the columns associated with the team, player, points, rebounds, and assists. Report on the number of players in this shared dataset.
 
 ```{r}
-#PUT CODE HERE
+wnba2 |>
+  left_join(wnbaStars,
+            by = c("Player", "Team")) |>
+  select(Player, Team, PTS, TRB, AST)
 ```
+In this shared dataset, there are 48 players that are shared in both wnba2 and wnbaStars if excluding those from wnbaStars that aren't shared
 
 :::
 
@@ -55,9 +64,12 @@ Join the `wnba2` and `wnbaStars` data frames together, keeping all players from 
 Join the `wnba2` and `wnbaStars` data frames together, keeping all players from `wnbaStars` but excluding those from `wnba2` that are not shared. Then, select the columns associated with the team, player, points, rebounds, and assists. Report on the number of players in this shared dataset.
 
 ```{r}
-#PUT CODE HERE
+wnba2 |>
+  right_join(wnbaStars,
+            by = c("Player", "Team")) |>
+  select(Player, Team, PTS, TRB, AST)
 ```
-
+In this shared dataset, there are 12 players that are shared in both wnba2 and wnbaStars if excluding those from wnba2 that aren't shared.
 :::
 
 ::: {.callout-important}
@@ -66,9 +78,12 @@ Join the `wnba2` and `wnbaStars` data frames together, keeping all players from 
 Join the `wnba2` and `wnbaStars` data frames together, keeping all players from both data frames. Then, select the columns associated with the team, player, points, rebounds, and assists. Report on the number of players in this shared dataset.
 
 ```{r}
-#PUT CODE HERE
+wnba2 |>
+  full_join(wnbaStars,
+            by = c("Player", "Team")) |>
+  select(Player, Team, PTS, TRB, AST)
 ```
-
+In this shared full_join dataset, there are 56 total players.
 :::
 
 ::: {.callout-important}
@@ -81,7 +96,12 @@ Merge the `wnba1` and `wnba2` datasets together. Using code from the activity in
 - Median TOV
 
 ```{r}
-#PUT CODE HERE
+wnba1 |>
+  rbind(wnba2) |>
+  group_by(Pos) |>
+  summarize(numPlayers = n(),
+            medPTS = median(PTS),
+            medTOV = median(TOV))
 ```
 
 :::

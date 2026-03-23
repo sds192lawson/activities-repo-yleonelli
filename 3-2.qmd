@@ -1,0 +1,53 @@
+---
+title: "3-2"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+data(midwest)
+midwest
+```
+
+1.  County name variable: county
+    State to which county belongs to variable: state
+    Percent of population with known poverty status variable: percpovertyknown
+    Percent with professional degree variable: percprof
+    Whether county is in metropolitan area variable: inmetro
+
+```{r}
+midwest |>
+  select(county, state, percpovertyknown, percprof, inmetro)
+```
+
+2.
+```{r}
+midwest |>
+  select(county, state, percpovertyknown, percprof, inmetro) |>
+  arrange(desc(percprof), percpovertyknown)
+```
+
+3.
+```{r}
+midwest |>
+  select(county, state, percpovertyknown, percprof, inmetro) |>
+  filter(inmetro == 0 & percprof < 5)
+```
+
+4.
+```{r}
+midwest |>
+  mutate(popProf = (percprof*100) / poptotal) |>
+  select(county, state, popProf)
+```
+
+5.
+```{r}
+midwest |>
+  summarize(numCounties = n(),
+            totalPop = sum(poptotal),
+            medianPercPoverty = median(percpovertyknown),
+            propCountyMetro = mean(inmetro))
+```
+

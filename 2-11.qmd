@@ -1,0 +1,63 @@
+---
+title: "2-11"
+format: html
+editor: visual
+---
+
+```{r}
+library(ggplot2)
+housing <- read.csv("https://jericholawson.github.io/classes/sds192/s26/data/housing.csv")
+```
+
+1. There are 20640 observations and 10 variables.
+2. Numerical variables: all except ocean_proximity
+   Categorical variable: ocean_proximity
+3.
+```{r}
+ggplot(data = housing, 
+       aes(x = ocean_proximity)) +
+  geom_bar() +
+  labs(title = "Frequencies of Groups of Ocean Proximity for California Districts,  1990") +
+  xlab("Ocean Proximity") +
+  ylab("Frequency")
+
+```
+
+4.
+```{r}
+ggplot(data = housing, 
+       aes(x = ocean_proximity, fill = ocean_proximity)) +
+  geom_bar() +
+  scale_fill_brewer(palette = "BrBG")
+  labs(title = "Frequencies of Groups of Ocean Proximity for California Districts,  1990",
+       x = "Ocean Proximity",
+       y = "Frequency",
+       fill = "Ocean Proximity") +
+  theme_minimal()
+```
+
+5.
+```{r}
+ggplot(data = housing, 
+       aes(x = ocean_proximity, y = median_income, fill = ocean_proximity)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Median Household Income (in 1000s) by Ocean Proximity for California Districts, 1990",
+       x = "Ocean Proximity",
+       y = "Median Income (1000s)",
+       fill = "Ocean Proximity") +
+  theme_minimal()
+```
+
+6.
+```{r}
+ggplot(data = housing,
+       aes(x = housing_median_age, y = median_income)) +
+  geom_point(alpha = 0.3, size = 1) +
+  facet_wrap(~ ocean_proximity) +
+  labs(title = "Median Income vs. Median Age by Ocean Proximity",
+    x = "Median Age",
+    y = "Median Income (1000s)") +
+  theme_minimal()
+```
+
+
