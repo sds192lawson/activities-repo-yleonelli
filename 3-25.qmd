@@ -1,0 +1,58 @@
+---
+title: "3-25"
+author: "Ysabella Leonelli"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+USAccDeaths
+```
+
+# Question 1: Determine which dataset will be “wider” and which one will be “longer.”
+
+Wider dataset is the first scenario, and longer dataset will be the second scenario.
+
+# Question 2: Determine the pros and cons of using each type of dataset.
+
+Longer dataset will be easier to summarize as opposed to a wider dataset, whereas wider dataset will be easier to see an overview and easier to perform time series analyses. However, cons for the longer dataset would be that the class will be repeated vertically downwards (but you can facet using ggplot), and cons for the wider dataset would be that it would be harder to do summarize statistics.
+
+# Question 3: How would I convert the dates on the previous slide to a date-time format?
+
+You can use as.Date or ymd_hms().
+
+```{r}
+deaths <- as.data.frame(matrix(USAccDeaths, nrow = 6, ncol = 12, byrow = T))
+deaths <- deaths |> 
+  mutate(year = 1973:1978) |>
+  rename("jan" = V1, "feb" = V2, "mar" = V3,
+         "apr" = V4, "may" = V5, "jun" = V6,
+         "jul" = V7, "aug" = V8, "sep" = V9,
+         "oct" = V10, "nov" = V11, "dec" = V12) |>
+  relocate(year)
+```
+
+# Question 4: Use pivot_longer() to create a 72x3 data frame that has all of the deaths in a single column. Assign this to deaths_longer.
+
+```{r}
+deaths_longer <- deaths |> 
+  pivot_longer(cols = -year, 
+                       names_to = "Month",
+                       values_to = "Death Toll")
+```
+
+
+# Question 5: Determine if each of the columns are of the appropriate type. Also determine if any column needs to be factorized.
+
+The columns are in an appropriate type, but we might want to factorize the Month column.
+
+# Question 6: Use pivot_wider() to return back to the form seen in deaths(). Assign this to deaths_wider and verify that it matches the original dataset we used.
+
+```{r}
+deaths_wider <- deaths_longer |> 
+  pivot_wider(names_from = "Month", 
+              values_from = "Death Toll")
+```
+
+
