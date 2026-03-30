@@ -1,0 +1,21 @@
+---
+title: "3-30"
+format: html
+editor: visual
+---
+
+# Question 1: What are some important ideas that Carissa Véliz talked about in the video? What are your thoughts to some of the examples she used and her perspective?
+
+Some ideas that Veliz talked about in her Ted Talk are that citizens should be more aware that their data isn't private at all, and that companies, if they wanted to perform unethical acts, could easily find information about you, even down to the miniscule details. She also mentioned that technology is never neutral, and if a piece of technology was designed to perform something, that alone is already some sort of bias, straying from neutrality. And for the most part, I do agree with everything that she says, especially in this modern day and age where we as humans rarely go a day without technology anymore. It is really important to be aware of the fact that as long as you don't go completely analog, that your personal information can easily be found, because--as she said in her talk--if inexperienced people from the NYT could track the president, then anyone could track you down, too.
+
+# Question 2: What does it mean that “we have become our own data?” How does that sentiment affect your personal decision-making, and how we define ourselves?
+
+According to the NYT article, "Your Daata is Diminishing Your Freedom," Colin Koopman, chairman of the philosophy department at the University of Oregon and author of "How We Became Our Data," states that we as humans "live our lives through our data." In the age of modern technology, Koopman makes the point that so much of our lives can be explained by data points that if a data scientist were to collect all of these so-called points about a person and run an analysis on said person, it would be able to describe the person so accurately that the person can essentially be just data, which is jarring to think about in this big data world.
+
+# QUestion 3: Using the article as support, what are some concerns you personally have about the use of your data?
+
+My personal concern with the use of my data is how there are little to no regulations with the government about how this data is essentially used. I guess they wouldn't WANT to employ regulations, in case a regime came along and actually WANTED to use our personal data for unethical plots, but so many companies these days use our data through cookies, the links we click unconsciously, etc. and we--normal citizens--have NO idea what is actually being done behind the scenes. The worst part about it all is that there's a subconscious narrative (albeit, more and more people are becoming more conscious, but regardless it is still the case) for people to just not care about their personal data, and to just blindly trust these companies with it.
+
+# QUestion 4: Discuss examples about how a government (or smaller body) could execute a data ethics tenet of your choice.
+
+I think that while the Data Ethics Tenets provided by the federal government are a good default for data scientists and users to follow, I fear that we have to hammer down on these tenets a little more. For example, if I were in charge of things, I'd be more strict with "promoting transparency," and instead change it to "require transparency." We see this in other fields of science as well, but the general public not knowing a thing about how their data is being used or what's going on behind the scenes is a major issue that we need to fix as a society. We need to explain data science in a way that is accessible to the general public so that more citizens can make more informed decisions about their own personal data, so as to protect themselves from other data users who want to monopolize it. 
