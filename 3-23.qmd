@@ -1,0 +1,73 @@
+---
+title: "3-23"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+prisons <- read.csv("Prison_Boundaries.csv")
+```
+
+# Question 1: What have been some issues you’ve had with this setup? Can data be condensed?
+
+- Missing variables/values
+- Several data frames
+- Not having unique identifiers (example: V1, V2)
+- Different types
+
+
+# Question 2: What happens when we create a vector with two types represented in it? Is there a hierarchy to these types?
+
+```{r}
+x4 <- c(2, "times", TRUE, 4)
+print(x4)
+typeof(x4)
+```
+
+It prints them all out as character types because it's the lowest in the hierarchy (integer, logical, double, character) and it's the most flexible type.
+
+# Question 3: Use the + and mean() operations on the following vectors:
+
+```{r}
+x1 <- c(1, 2, 3, 4, 5)
+x2 <- c("a", "b", "c", "d", "e")
+x3 <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+
+x1 + x3
+# x2 + x3 <- error
+
+mean(x1)
+mean(x2) # gets a warning message because "argument is not numeric or logical; returns NA
+mean(x3)
+```
+
+# Question 4: Using sapply(prisons, typeof), identify which columns in the data frame have an improper data type.
+
+```{r}
+sapply(prisons, typeof)
+```
+It seems like SOURCEDATE, VAL_DATE, CreationDate, and EditDate have improper data types, because they're being treated as characters and not dates.
+
+# Question 5: For two of these variables mentioned in Q4, correct the data type using prior code.
+
+```{r}
+library(lubridate)
+
+prisons <-
+  prisons |>
+  mutate(SOURCEDATE = as.Date(SOURCEDATE),
+         VAL_DATE = as.Date(VAL_DATE))
+
+sapply(prisons, class)
+```
+
+
+# Question 6: Using the cheatsheet mentioned earlier, try out two different lubridate functions on the date/time column in the prisons dataset.
+
+```{r}
+prisons |>
+  mutate(SOURCEDATE = week(SOURCEDATE),
+         VAL_DATE = tz(VAL_DATE))
+```
+

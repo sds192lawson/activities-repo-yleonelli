@@ -1,0 +1,63 @@
+---
+title: "Reading6_Section5.5_Exercise2"
+author: Ysabella Leonelli
+format: html
+editor: visual
+---
+
+# Exercise 2 (Section 5.5)
+
+Use the Batting, Pitching, and People tables in the Lahman package to answer the following questions.
+
+```{r}
+library(Lahman)
+library(dplyr)
+```
+
+
+1. Name every player in baseball history who has accumulated at least 300 home runs (HR) and at least 300 stolen bases (SB). You can find the first and last name of the player in the People data frame. Join this to your result along with the total home runs and total bases stolen for each of these elite players.
+
+```{r}
+part_a <- Batting |>
+  group_by(playerID) |>
+  summarize(total_HR = sum(HR, na.rm = TRUE),
+            total_SB = sum(SB, na.rm = TRUE)) |>
+  filter(total_HR >= 300, total_SB >= 300) |>
+  inner_join(People |> select(playerID, nameFirst, nameLast), by = "playerID") |>
+  select(nameFirst, nameLast, total_HR, total_SB)
+
+part_a
+```
+Answer: Carlos Beltran, Barry Bonds, Bobby Bonds, Andre Dawson, Steve Finley, Willie Mays, Alex Rodriguez, and Reggie Sanders
+
+
+2. Similarly, name every pitcher in baseball history who has accumulated at least 300 wins (W) and at least 3,000 strikeouts (SO).
+
+```{r}
+part_b <- Pitching |>
+  group_by(playerID) |>
+  summarize(total_W = sum(W, na.rm = TRUE),
+            total_SO = sum(SO, na.rm = TRUE)) |>
+  filter(total_W >= 300, total_SO >= 3000) |>
+  inner_join(People |> select(playerID, nameFirst, nameLast), by = "playerID") |>
+  select(nameFirst, nameLast, total_W, total_SO)
+
+part_b
+```
+
+Answer: Steve Carlton, Roger Clemens, Randy Johnson, Walter Johnson, Greg Maddux, Phil Niekro, Gaylord Perry, Nolan Ryan, Tom Seaver, and Don Sutton
+
+3. Identify the name and year of every player who has hit at least 50 home runs in a single season. Which player had the lowest batting average in that season?
+
+```{r}
+part_c <- Batting |>
+  filter(HR >= 50, AB > 0) |>
+  mutate(batting_avg = H / AB) |>
+  inner_join(People |> select(playerID, nameFirst, nameLast), by = "playerID") |>
+  select(nameFirst, nameLast, yearID, HR, H, AB, batting_avg) |>
+  arrange(batting_avg)
+
+part_c
+```
+
+Answer: Kyle Schwarber had the lowest batting average in this season.

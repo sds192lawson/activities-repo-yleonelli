@@ -1,0 +1,28 @@
+---
+title: "Activity 2"
+format: html
+editor: visual
+---
+
+```{r}
+mtcars
+```
+
+
+```{r}
+math_round <- round(pi, digits = 2)
+```
+
+
+```{r}
+library(tidyverse)
+sapply(select(mtcars, c(mpg, cyl)), mean)
+
+mtcars |> select(mpg, cyl) |> sapply(mean)
+
+```
+
+length() -> returns the number of elements in the vector (including duplicates)
+unique() -> returns a vector containing only the distinct values, removing any duplicates while keeping the original order
+sort() -> returns the vector with its elements ordered (in increasing numerical order)
+paste() -> converts the numbers to character strings and concatenates them together into a single character vector

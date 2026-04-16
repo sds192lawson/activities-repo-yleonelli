@@ -1,0 +1,118 @@
+---
+title: "w11l1_act.qmd"
+format: html
+editor: visual
+---
+
+```{r}
+library(mlbench)
+library(tidyverse)
+data(BostonHousing2)
+```
+
+Q1: Suppose I want to use the crim variable. Which pieces of code should…
+  a.) stay the same?
+    
+    Everything stays the same except for the BostonHousing2$medv part, it will be replaced with the different variable that you want; for this example, it's BostonHousing2$crim.
+    
+  b.) have to change?
+  
+    BostonHousing2$medv, specifically the "medv" part if you want to do it with the crim variable.
+
+```{r}
+# Step 1: Find Q1, Q3, and the IQR
+quarts <- quantile(BostonHousing2$crim, probs = c(0.25, 0.75))
+iqr <- quarts[2] - quarts[1]
+
+# Step 2: Find the bounds
+ub <- quarts[2] + 1.5 * iqr
+lb <- quarts[1] - 1.5 * iqr
+
+# Step 3: Show the outliers
+inds <- which(BostonHousing2$crim < lb | BostonHousing2$crim > ub)
+BostonHousing2 |> slice(inds) #|>  head(3)
+```
+
+
+Q2: What am I showing to the user? What am I doing that would not to be shown to the user?
+
+I'm showing the user the rows of the dataset that contain outliers in the crim variable, but I'm not showing the intermediate steps, such as calculating Q1, Q3, IQR, and the upper/lower bounds, which are used behind the scenes to find those outliers.
+
+Q3: Convert this code into a function, taking the following into consideration:
+  a.) What would be the input?
+      
+      The input would be the specific variable (column name) you want to find outliers for
+        
+  b.) What actions do I need to perform with the function?
+      
+      You would need to find Q1 and Q3 using the quantile() function, the IQR by subtracting Q3 - Q1, finding the upper and lower bounds, and finding the observations that lie outside those bounds to find the outliers
+      
+  c.) What do I need to return?
+  
+      It needs to return the rows of the dataset that represent the outliers for that specific variable of your choosing, so it would be outliers("[variable]") or outliers("[columnnumber]").
+  
+```{r}
+# Converting code above into a function:
+outliers <- function(var){
+  # Step 1: Find Q1, Q3, and the IQR
+  quarts <- quantile(BostonHousing2[[var]], probs = c(0.25, 0.75)) # you can change the values inside c() to change the range
+  iqr <- quarts[2] - quarts[1]
+
+  # Step 2: Find the bounds
+  ub <- quarts[2] + 1.5 * iqr
+  lb <- quarts[1] - 1.5 * iqr
+
+  # Step 3: Show the outliers
+  inds <- which(BostonHousing2[[var]]< lb | BostonHousing2[[var]] > ub)
+  return(BostonHousing2 |> slice(inds) |>  head(3))
+}
+
+outliers("medv")
+# outliers(5) <- you can also use this to specify what column you want to access in the df
+```
+
+  
+
+Q4: When calling the function from question #3, use one of the three functionals to get the outliers when using a set of variables.
+
+```{r}
+outliers <- function(var){
+  quarts <- quantile(var, probs = c(0.25, 0.75))
+  iqr <- quarts[2] - quarts[1]
+
+  ub <- quarts[2] + 1.5 * iqr
+  lb <- quarts[1] - 1.5 * iqr
+
+  return(inds <- which(var < lb | var > ub))
+}
+
+BostonHousing2 |>
+  select(medv, crim, zn, indus) |>
+  map(outliers)
+```
+
+
+Q5: Create a function that generates a boxplot of a numeric variable.
+
+```{r}
+boxplotter <- function(var){
+  graphics::boxplot(var)
+}
+
+boxplotter(BostonHousing2$medv)
+```
+
+
+Q6: Create a function that prints the top 3 observations from BostonHousing2 based off a given variable.
+
+```{r}
+top3 <- function(var){
+  BostonHousing2 |>
+    arrange(desc(.data[[var]])) |>
+    head(3)
+}
+
+top3("medv")
+top3("crim")
+```
+

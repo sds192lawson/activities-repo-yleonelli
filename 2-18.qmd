@@ -1,0 +1,22 @@
+---
+title: "2-18"
+format: html
+editor: visual
+---
+
+```{r}
+install.packages("mlbench")
+library(mlbench)
+library(ggplot2)
+data(BostonHousing2)
+```
+
+```{r}
+ggplot(BostonHousing2, aes(x = tax, y = chas, color = chas)) +
+  geom_boxplot(col = "purple") + theme_classic() +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line.y = element_blank()) +
+  labs(x = "Full-Value Property-Tax Rate per USD (10,000)")
+```
+

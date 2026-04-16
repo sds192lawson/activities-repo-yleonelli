@@ -1,0 +1,89 @@
+---
+title: "Week 6, Lecture 1: Data Wrangling"
+subtitle: "SDS 192: Introduction to Data Science"
+author: "NAME HERE"
+---
+
+## Introduction
+
+Use the following code below to load in the `midwest` data. Answer the following wrangling questions below:
+
+```{r}
+library(tidyverse)
+data(midwest)
+```
+
+## Questions
+
+::: {.callout-important}
+###### Question 1
+
+Using the help documentation for `midwest`, identify variables related to the following:
+
+- county name
+- state to which the county belongs to
+- percent of population with known poverty status
+- percent with professional degree
+- whether county is in metropolitan area
+
+Once done, select those columns using `dplyr` functions.
+
+```{r}
+# PUT SOLUTION HERE
+```
+:::
+
+::: {.callout-important}
+###### Question 2
+
+With the columns selected from Q1, arrange the dataset based on the percent of populace with a professional degree in descending order, followed by percent of populace with known poverty status in ascending order.
+
+```{r}
+# PUT SOLUTION HERE
+```
+
+:::
+
+::: {.callout-important}
+###### Question 3
+
+Adding to what was created in Q1, keep counties that are not in a metropolitan area and have less than 5\% of the populace with a professional degree.
+
+```{r}
+# PUT SOLUTION HERE
+```
+
+:::
+
+::: {.callout-important}
+###### Question 4
+
+Tack a new column named `popProf` that contains the number of people who have a professional degree. Then, show only the county, state, and new column.
+
+Hint: You will need two variables from the dataset to do this operation.
+
+```{r}
+# PUT SOLUTION HERE
+```
+
+:::
+
+::: {.callout-important}
+###### Question 5
+
+Create a table that shows the following metrics in each state:
+
+- Number of counties
+- Total population
+- Median percent with known poverty status
+- Proportion of counties that are in metro area
+
+```{r}
+# PUT SOLUTION HERE
+```
+
+:::
+
+## Turn-in
+
+Save the .qmd file inside your activities repository. Please stage, commit, and push to GitHub.
