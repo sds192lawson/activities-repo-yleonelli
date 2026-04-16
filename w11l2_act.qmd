@@ -1,0 +1,49 @@
+---
+title: "w11l2_act"
+author: "Ysabella Leonelli"
+format: html
+editor: visual
+---
+
+```{r}
+library(mlbench)
+library(tidyverse)
+data(BostonHousing2)
+```
+
+Q1: Suppose I want to print out the observations that are outliers for a given variable. In the last lecture, we created a function to do this. Apply this function inside a for-loop that traverses across BHsmall.
+
+```{r}
+BHsmall <- BostonHousing2 |> 
+  select(medv, crim, nox, indus) |>
+  slice(1:5)
+
+find_outliers <- function(x) {
+  quarts <- quantile(x, probs = c(0.25, 0.75))
+  iqr <- quarts[2] - quarts[1]
+  
+  ub <- quarts[2] + 1.5 * iqr
+  lb <- quarts[1] - 1.5 * iqr
+}
+
+outlier_inds = rep(-1, ncol(BHsmall))
+for (i in 1:ncol(BHsmall)) {
+  outlier_inds[i] <- find_outliers(BHsmall[[i]])
+}
+```
+
+
+Q2: Use one of the map functions to find the mean of each column in BHsmall
+
+```{r}
+BHsmall |> 
+  map(mean)
+```
+
+
+Q3: Use one of the map functions to find the difference of two columns in BHsmall
+
+```{r}
+map2_dbl(BHsmall$medv, BHsmall$indus, function(x, y) x - y)
+```
+
